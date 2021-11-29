@@ -1,0 +1,25 @@
+@font-face {  
+   font-family: "Arial";  
+   /*src: url(/ckeditor/CustomFonts/SourceSansPro-Regular.eot); /* IE */  
+   src: url("CustomFonts/ariblk.ttf") format("truetype"); /*non-IE*/  
+}
+@font-face {  
+   font-family: "Tahoma";  
+   /*src: url(/ckeditor/CustomFonts/SourceSansPro-Regular.eot); /* IE */  
+   src: url("CustomFonts/tahomabd.ttf") format("truetype"); /*non-IE*/  
+}
+@font-face {  
+   font-family: "monotypecorsiva";  
+   /*src: url(/ckeditor/CustomFonts/SourceSansPro-Regular.eot); /* IE */  
+   src: url("CustomFonts/monotypecorsiva.ttf") format("truetype"); /*non-IE*/  
+}
+@font-face {  
+   font-family: "arialnarrow";  
+   /*src: url(/ckeditor/CustomFonts/SourceSansPro-Regular.eot); /* IE */  
+   src: url("CustomFonts/arialnarrow.ttf") format("truetype"); /*non-IE*/  
+}
+@font-face {  
+   font-family: "arialnarrow";  
+   /*src: url(/ckeditor/CustomFonts/SourceSansPro-Regular.eot); /* IE */  
+   src: url("CustomFonts/arialnarrowb.ttf") format("truetype"); /*non-IE*/  
+}

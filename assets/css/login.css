@@ -1,0 +1,85 @@
+
+/*! Buat Halaman Login*/
+
+.sd
+{
+    position: absolute;
+width: 540px;
+height: 105px;
+left: 1047px;
+top: 146px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 48px;
+line-height: 65px;
+
+color: #FFFFFF;
+}
+.container{
+
+    position: absolute;
+    width: 499px;
+    height: 722px;
+    left: 960px;
+    top: 70px;
+    
+    background: rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(8px);
+  
+    /* Note: backdrop-filter has minimal browser support */
+    
+    border-radius: 36px;
+}
+.background
+{
+    position: absolute;
+    width: 1780px;
+    height: 1400px;
+    top: 0px;
+    left: 0px;
+    background:url(../img/bg.png);
+}
+.font
+{
+    position: absolute;
+width: 400px;
+height: 57px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+top: 120px;
+left: 320px;
+color: #FFFFFF;
+
+}
+     
+/* Gambar */
+
+.img1{
+    background:url(../img/img1.png);
+    background-position:center;
+ 
+}
+.img2{
+    position: relative;
+    width: 1480px;
+    height: 500px;
+    top: 0px;
+    left: 0px;
+    background:url(../img/img2.png);
+   
+}
+.img3{
+    position: absolute;
+    width: 1780px;
+    height: 800px;
+    top: 0px;
+    left: 0px;
+    
+    background:url(../img/img3.png);
+}

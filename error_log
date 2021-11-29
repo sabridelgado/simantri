@@ -1,0 +1,7 @@
+[15-May-2018 07:20:54 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[15-May-2018 07:20:56 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[15-May-2018 07:20:57 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[15-May-2018 07:20:57 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[15-May-2018 07:20:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[15-May-2018 07:20:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/sulw7597/public_html/sultraprov.go.id/application/controllers/Agenda.php on line 27
+[17-May-2018 20:41:17 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'kelompok_kegiatan' (T_STRING), expecting ')' in /home/sulw7597/public_html/sultraprov.go.id/application/views/admin/informasi/gallery.php on line 266
