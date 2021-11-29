@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
@@ -155,7 +155,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'onsm8652_spk-pemidos',
+	'database' => 'db_simantri',
 	'dbdriver' => 'mysqli',
 
 	'dbprefix' => '',
@@ -185,4 +185,3 @@ $db['default'] = array(
 	'save_queries' => TRUE
 
 );
-

@@ -19,41 +19,45 @@
           <span>Beranda</span></a>
       </li>
       <hr class="sidebar-divider d-none d-md-block">
-     
 
-     
-        <div class="sidebar-heading">
-          Data Sistem
-        </div>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url('sungai') ?>">
-            <i class="fa fa-fw fa-file-text"></i>
-            <span>Sungai</span></a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url('monitoring') ?>">
-            <i class="fa fa-fw fa-desktop"></i>
-            <span>Monitoring Sungai</span></a>
-        </li>
 
-        <hr class="sidebar-divider d-none d-md-block">
-        <div class="sidebar-heading">
-          Setting
-        </div>
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataUmum" aria-expanded="true" aria-controls="dataUmum">
-            <i class="fa fa-fw fa-user"></i>
-            <span>Data Umum</span>
-          </a>
-          <div id="dataUmum" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
 
-             
-              <a class="collapse-item" href="<?php echo site_url('user') ?>">User</a>
-            </div>
+      <div class="sidebar-heading">
+        Data Sistem
+      </div>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('kedatangan') ?>">
+          <i class="fa fa-fw fa-users"></i>
+          <span>Simulasi Kedatanagan</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('pelayanan') ?>">
+          <i class="fas fa-user-cog"></i>
+          <span>Simulasi Pelayanan</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('simulasi') ?>">
+          <i class="fa fa-fw fa-desktop"></i>
+          <span>Simulasi Hasil</span></a>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="sidebar-heading">
+        Setting
+      </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataUmum" aria-expanded="true" aria-controls="dataUmum">
+          <i class="fa fa-fw fa-cog"></i>
+          <span>Data Umum</span>
+        </a>
+        <div id="dataUmum" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="<?php echo site_url('user') ?>">User</a>
+            <a class="collapse-item" href="<?php echo site_url('setting') ?>">Setting</a>
           </div>
-        </li>
+        </div>
+
+      </li>
 
       <hr class="sidebar-divider d-none d-md-block">
       <!-- Sidebar Toggler (Sidebar) -->

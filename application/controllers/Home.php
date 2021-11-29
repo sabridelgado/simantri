@@ -1,35 +1,40 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-class Home extends CI_Controller {
-  function __construct() {
+defined('BASEPATH') or exit('No direct script access allowed');
+class Home extends CI_Controller
+{
+  function __construct()
+  {
     parent::__construct();
     error_reporting(0);
     $this->load->model("m_login");
     $this->load->model("m_widget");
     $this->load->model("m_setting");
   }
-  
-  public function index() {
+
+  public function index()
+  {
     if (!($this->session->userdata('user_id'))) {
       $data['settings_app']   = $this->m_setting->fetch_setting();
-      $this->load->view("admin/login/login_page",$data);
+      $this->load->view("admin/login/auth", $data);
     } else {
+
+      //====================================================
       $setting['settings_app'] = $this->m_setting->fetch_setting();
-      $data['dosen']         = $this->m_widget->total_dosen();
-      $data['keahlian']          = $this->m_widget->total_keahlian();
       $data['group']          = $this->m_widget->total_group();
       $data['user']           = $this->m_widget->total_user();
-      $data['laporan']         = $this->m_widget->total_laporan();
+      $data['nasabah']           = $this->m_widget->total_nasabah();
       //===================================================
-      
-      $this->load->view("attribute/header",$setting);
-      $this->load->view("attribute/menus",$setting);
-      $this->load->view("attribute/content",$data);
-      $this->load->view("attribute/footer",$setting);
+
+
+      $this->load->view("attribute/header", $setting);
+      $this->load->view("attribute/menus", $setting);
+      $this->load->view("attribute/content", $data);
+      $this->load->view("attribute/footer", $setting);
     }
   }
-  
-  public function login() {
+
+  public function login()
+  {
     if ($_POST) {
       $data['username'] = $this->input->post('username');
       $data['password'] = md5($this->input->post('password'));
@@ -46,7 +51,7 @@ class Home extends CI_Controller {
           'group_id'        => $result->group_id,
           'IsAuthorized'    => true
         );
-       
+
         $this->session->set_userdata($data);
         redirect('home');
       } else {
@@ -55,11 +60,10 @@ class Home extends CI_Controller {
       }
     }
   }
-  
-  public function logout() {
+
+  public function logout()
+  {
     $this->session->sess_destroy();
     redirect('' . base_url());
   }
-  
 }
-?>
