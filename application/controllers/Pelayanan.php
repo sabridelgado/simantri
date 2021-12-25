@@ -95,12 +95,12 @@ class Pelayanan extends CI_Controller
             {
                 $miu = $miu;
                 //bangkitkan bilangan acak
-                $AcakInter = rand(0.1 * 1000, 0.9 * 1000) / 1000;
+                $AcakInter = rand(0.1 * 10000, 0.9 * 10000) / 10000;
                 //hitung waktu pelayanan
-                $Layan = round(abs((1 / $miu) * log10($AcakInter)), 5);
+                $Layan = round(abs((1 / $miu) * log10($AcakInter)), 4);
 
                 //hitung waktu layanan
-                $SelesaiLyn = round($Mlayan + $Layan, 5);
+                $SelesaiLyn = round($Mlayan + $Layan, 4);
 
                 $nilai = [
                     $SelesaiLyn, $Layan, $AcakInter
@@ -136,7 +136,7 @@ class Pelayanan extends CI_Controller
 
                         $WaktuTgu = $MulaiLyn - $WaktuDtg;
 
-                        $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 5);
+                        $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
 
                         $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn];
                     } else {
@@ -158,22 +158,27 @@ class Pelayanan extends CI_Controller
                             $MulaiLyn = $WaktuDtg;
                             $waktuselesai = hitung($MulaiLyn, $miu);
                             $WaktuTgu = $MulaiLyn - $WaktuDtg;
-                            $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 5);
+                            $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
                             $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn];
                         } else {
                             $MulaiLyn = $kecil;
                             $waktuselesai = hitung($MulaiLyn, $miu);
                             $WaktuTgu = $MulaiLyn - $WaktuDtg;
-                            $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 5);
+                            $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
                             $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn];
                         }
                     }
 
-                    $mulai = $MulaiLyn * 3600;
-                    $layanan = $waktuselesai[1] * 3600;
-                    $s_layanan = $waktuselesai[0] * 3600;
-                    $t_antrian = $WaktuTgu * 3600;
-                    $t_sistem = $WaktuTguSys * 3600;
+                    $waktu = $q->durasi * 3600;
+
+                    $mulai = $MulaiLyn * $waktu;
+                    $layanan = $waktuselesai[1] * $waktu;
+                    $s_layanan = $waktuselesai[0] * $waktu;
+                    $t_antrian = $WaktuTgu * $waktu;
+                    $t_sistem = $WaktuTguSys * $waktu;
+
+
+
 
                     $resultt = [
 
@@ -201,12 +206,20 @@ class Pelayanan extends CI_Controller
                 }
             }
 
+            // echo '<pre>';
+            // print_r($all);
+            // echo '</pre>';
+
+
+
+
+            // die;
 
             $durasim = $q->durasi;
-            $wq = round($TWaktuTgu / $nasabah, 5);
-            $ws = round($TWaktuTguSys / $nasabah, 5);
+            $wq = round($TWaktuTgu / $nasabah, 4);
+            $ws = round($TWaktuTguSys / $nasabah, 4);
             $lq = ceil($TWaktuTgu / $durasim);
-            $ls = round($TWaktuTguSys / $durasim, 5);
+            $ls = round($TWaktuTguLyn, 4);
             $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
 
 
@@ -221,6 +234,8 @@ class Pelayanan extends CI_Controller
             ];
 
             $this->m_simulasi->input_hasil($result);
+
+
 
             redirect('pelayanan');
         } else {
@@ -243,6 +258,7 @@ class Pelayanan extends CI_Controller
 
         $this->db->truncate('tb_pelayanan');
         $this->db->truncate('tb_hasil');
+        $this->db->truncate('tb_parameter');
         redirect('pelayanan');
     }
 }

@@ -30,6 +30,35 @@ class m_widget extends CI_Model
     $this->db->update('tb_parameter', $data, array('id' => 1));
   }
 
+  public function get_hasil()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_hasil');
+    //$this->db->where('b.id_sungai', $id);
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
+  public function get_parameter()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_parameter');
+    //$this->db->where('b.id_sungai', $id);
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
+
 
   function __destruct()
   {

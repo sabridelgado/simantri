@@ -99,4 +99,9 @@ class M_simulasi extends CI_Model
         $query = $this->db->truncate('tb_hasil');
         return $query;
     }
+    public function reset_tbparameter()
+    {
+        $query = $this->db->truncate('tb_parameter');
+        return $query;
+    }
 }

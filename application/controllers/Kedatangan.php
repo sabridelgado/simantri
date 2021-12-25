@@ -119,6 +119,7 @@ class Kedatangan extends CI_Controller
             $this->m_simulasi->reset_tbkedatangan();
             $this->m_simulasi->reset_tbpelayanan();
             $this->m_simulasi->reset_tbsimulasi();
+            // $this->m_simulasi->reset_tbparameter();
 
 
             //rumus mendcari kedatangan nasabah
@@ -133,21 +134,22 @@ class Kedatangan extends CI_Controller
                 } else {
 
                     //bangkitkan bilangan acak
-                    $AcakInter = rand(0.1 * 1000, 0.9 * 1000) / 1000;
+                    $AcakInter = rand(0.1 * 10000, 0.9 * 10000) / 10000;
                     //hitung waktu antar kedatangan
-                    $InterKdt = round(abs((1 / $lamda) * log10($AcakInter)), 5);
+                    $InterKdt = round(abs((1 / $lamda) * log10($AcakInter)), 4);
 
                     //hitung waktu kedatangan
-                    $TinterKdt = round($TinterKdt + $InterKdt, 5);
+                    $TinterKdt = round($TinterKdt + $InterKdt, 4);
 
                     $InterWaktuKdt = $InterKdt * 3600 * $jam;
 
                     $WaktuKdt = $TinterKdt * 3600 * $jam;
 
-                    $konter = round($WaktuKdt);
+                    $konter = abs($WaktuKdt);
                     //hitung konter
 
                 }
+
 
                 //  masukan kedalam database
                 $result = [
@@ -172,6 +174,7 @@ class Kedatangan extends CI_Controller
                 $this->m_simulasi->input_kedatangan($result);
                 $this->m_simulasi->input_simulasi($simulasi);
             }
+
 
             $data["data"][] = [$AcakInter];
 
@@ -199,6 +202,7 @@ class Kedatangan extends CI_Controller
         $this->db->truncate('tb_kedatangan');
         $this->db->truncate('tb_pelayanan');
         $this->db->truncate('tb_hasil');
+        $this->db->truncate('tb_parameter');
         redirect('kedatangan');
     }
 }

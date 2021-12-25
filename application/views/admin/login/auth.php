@@ -66,7 +66,7 @@
             margin-bottom: 20px;
             padding: 0 80px 0 80px;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 20px;
             line-height: 132%;
             color: white;
             /* font-weight:600; */
@@ -292,9 +292,9 @@
             </div>
             <div class="col-md-7 body-1">
                 <div class="center-this">
-                    <img src="" height="150" class="">
+                    <img src="<?php echo base_url() ?>upload/setting/<?php echo $settings_app[0]->setting_logo ?>" height="50">&nbsp;&<br>
                 </div><br>
-                <h3 class="title-1 center-this"><?php echo $settings_app[0]->setting_short_appname ?>
+                <h3 class="title-1 center-this"><?php echo $settings_app[0]->setting_appname ?>
                     </h2>
                     <h4 class="text-white center-this" style="font-size:20px">Teknik Informatika <br><?php echo $settings_app[0]->setting_origin_app; ?></h4>
             </div>

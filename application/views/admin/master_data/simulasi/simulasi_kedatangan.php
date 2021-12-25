@@ -128,7 +128,7 @@
                             <tr>
                                 <td><?= $keys->id_kedatangan ?></td>
                                 <td><?= $keys->bil_acak ?></td>
-                                <td><?= ubahwaktu($keys->iwk_waktu)  ?></td>
+                                <td><?= ubahwaktu($keys->iwk_waktu)   ?></td>
                                 <td><?= ubahwaktu($keys->wk_waktu)  ?></td>
 
                             </tr>

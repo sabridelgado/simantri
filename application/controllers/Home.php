@@ -19,6 +19,9 @@ class Home extends CI_Controller
     } else {
 
       //====================================================
+
+      $data['hitung'] = $this->m_widget->get_hasil();
+      $data['parameter'] = $this->m_widget->get_parameter();
       $setting['settings_app'] = $this->m_setting->fetch_setting();
       $data['group']          = $this->m_widget->total_group();
       $data['user']           = $this->m_widget->total_user();

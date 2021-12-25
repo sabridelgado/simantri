@@ -39,13 +39,13 @@
                         <form action="<?= base_url('pelayanan/simulasi_pelayanan'); ?>" method="POST">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Laju Antrian:</label>
+                                    <label for="recipient-name" class="col-form-label">Laju:</label>
                                     <input type="numerik" name="miu" class="form-control" placeholder="laju pelayanan/satuan waktu" value="<?= set_value('lamda') ?>">
                                     <?php echo form_error('miu', '<small class="text-danger mt-1">', '</small>'); ?>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Durasi:</label>
+                                    <label for="recipient-name" class="col-form-label">Loket:</label>
                                     <input type="numerik" name="loket" class="form-control" placeholder="Jumlah Loket" value="<?= set_value('durasi') ?>">
                                     <?php echo form_error('loket', '<small class="text-danger mt-1">', '</small>'); ?>
                                 </div>
@@ -126,12 +126,12 @@
                         foreach ($s_layan as $keys) { ?>
 
                             <tr>
-                                <td><?= $keys->id_pelayanan ?></td>
-                                <td><?= $keys->bil_acak ?></td>
-                                <td><?= ubahwaktu($keys->w_mulai) ?></td>
-                                <td><?= ubahwaktu($keys->w_selesai_layanan) ?></td>
-                                <td><?= ubahwaktu($keys->w_tunggu_antrian) ?></td>
-                                <td><?= ubahwaktu($keys->w_tunggu_sistem) ?></td>
+                                <td><?= $keys->id_pelayanan  ?></td>
+                                <td><?= $keys->bil_acak  ?></td>
+                                <td><?= ubahwaktu($keys->w_mulai)  ?></td>
+                                <td><?= ubahwaktu($keys->w_selesai_layanan)  ?></td>
+                                <td><?= ubahwaktu($keys->w_tunggu_antrian)  ?></td>
+                                <td><?= ubahwaktu($keys->w_tunggu_sistem)  ?></td>
                             </tr>
                         <?php $no++;
                         } ?>

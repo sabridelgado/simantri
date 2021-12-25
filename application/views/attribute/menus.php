@@ -4,9 +4,10 @@
     <ul class="navbar-nav bg-gradient-gagas sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>home">
         <div class="sidebar-brand-icon ">
-          <i class="fa fa-map"></i>
+          <i class="fa fa-users"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><?php echo $settings_app[0]->setting_short_appname ?></div>
+        <img class="sidebar-brand-text mx-3" src="<?php echo base_url() ?>upload/setting/<?php echo $settings_app[0]->setting_logo ?>" height="40">
+
       </a>
 
       <!-- Divider -->
@@ -28,7 +29,7 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('kedatangan') ?>">
           <i class="fa fa-fw fa-users"></i>
-          <span>Simulasi Kedatanagan</span></a>
+          <span>Simulasi Kedatangan</span></a>
       </li>
 
       <li class="nav-item">
@@ -40,6 +41,11 @@
         <a class="nav-link" href="<?php echo site_url('simulasi') ?>">
           <i class="fa fa-fw fa-desktop"></i>
           <span>Simulasi Hasil</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('simulasi/animasi') ?>">
+          <i class="fas fa-atom"></i>
+          <span>Simulasi Model</span></a>
       </li>
       <hr class="sidebar-divider d-none d-md-block">
       <div class="sidebar-heading">
@@ -74,7 +80,7 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <img src="<?php echo base_url() ?>upload/setting/<?php echo $settings_app[0]->setting_logo ?>" height="40">&nbsp;&nbsp;<b>SELAMAT DATANG DI <?php echo strtoupper($settings_app[0]->setting_appname) ?></b><br>
+          <b style="color: #fff;">SELAMAT DATANG DI <?php echo strtoupper($settings_app[0]->setting_appname) ?></b><br>
 
 
           <ul class="navbar-nav ml-auto">
