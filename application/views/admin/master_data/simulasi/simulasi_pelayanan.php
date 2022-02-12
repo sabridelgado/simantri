@@ -140,6 +140,7 @@
 
                 </tbody>
             </table>
+            <small>Page rendered in <strong>{elapsed_time}</strong> seconds.</small>
         </div>
     </div>
 </div>

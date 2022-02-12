@@ -86,7 +86,7 @@
             </div>
             <div class="box1  p-2 col-xl-3 col-md-3 mb-2 mt-0 shadow3">
                 <h2 style="color:black ;" id="showTimer" class="mt-2 mb-5"></h2>
-                <h6>0.1 : 1</h6>
+                <h5>Skala 10 : 1 <span style="font-size: 15px;"> menit </span></h5>
             </div>
 
 

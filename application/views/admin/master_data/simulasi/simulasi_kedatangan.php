@@ -33,7 +33,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Simulasi Kedatnagan Antrian </h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Simulasi Kedatangan Antrian </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -41,8 +41,8 @@
                         <form action="<?= base_url('kedatangan/simulasi_kedatangan'); ?>" method="POST">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Laju Antrian:</label>
-                                    <input type="numerik" name="lamda" class="form-control" placeholder="laju antrian/satuan waktu" value="<?= set_value('lamda') ?>">
+                                    <label for="recipient-name" class="col-form-label">Laju Kedatangan Antrian:</label>
+                                    <input type="numerik" name="lamda" class="form-control" placeholder="laju Kedatangan antrian/satuan waktu" value="<?= set_value('lamda') ?>">
                                     <?php echo form_error('lamda', '<small class="text-danger mt-1">', '</small>'); ?>
                                 </div>
 
@@ -139,6 +139,7 @@
 
                 </tbody>
             </table>
+            <small>Page rendered in <strong>{elapsed_time}</strong> seconds.</small>
         </div>
     </div>
 </div>

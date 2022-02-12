@@ -98,11 +98,7 @@ class Kedatangan extends CI_Controller
                 $konter
 
             ];
-
-
-
             $data['nama'] = $this->uri->segment(2);
-
             //=========================================
             $setting['settings_app'] = $this->m_setting->fetch_setting();
             $data["user"]         = $this->m_user->fetch_data();
@@ -121,10 +117,8 @@ class Kedatangan extends CI_Controller
             $this->m_simulasi->reset_tbsimulasi();
             // $this->m_simulasi->reset_tbparameter();
 
-
             //rumus mendcari kedatangan nasabah
             while ($konter <= $durasi) {
-
 
                 $kedatangan = $kedatangan + 1;
                 if ($kedatangan == 1) {
@@ -134,7 +128,7 @@ class Kedatangan extends CI_Controller
                 } else {
 
                     //bangkitkan bilangan acak
-                    $AcakInter = rand(0.1 * 10000, 0.9 * 10000) / 10000;
+                    $AcakInter = rand(0.5 * 1000, 0.9 * 1000) / 10000;
                     //hitung waktu antar kedatangan
                     $InterKdt = round(abs((1 / $lamda) * log10($AcakInter)), 4);
 
@@ -149,8 +143,6 @@ class Kedatangan extends CI_Controller
                     //hitung konter
 
                 }
-
-
                 //  masukan kedalam database
                 $result = [
                     'durasi' => $jam,
@@ -167,23 +159,15 @@ class Kedatangan extends CI_Controller
                 ];
 
                 $parameter['p_lamda'] = $lamda;
-
                 $this->m_widget->update_data($parameter);
-
-
                 $this->m_simulasi->input_kedatangan($result);
                 $this->m_simulasi->input_simulasi($simulasi);
             }
 
-
             $data["data"][] = [$AcakInter];
-
             $data['s_kedatangan'] = $this->m_simulasi->get_kedatangan();
-
-
             $data['lamda'] = $lamda;
             $data['durasi'] = $jam;
-
             $data['nama1'] = $this->uri->segment(1);
             $data['nama'] = $this->uri->segment(2);
             //=========================================

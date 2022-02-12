@@ -138,16 +138,33 @@
 
       <div class="col-xl-4 col-md-4 mb-4">
 
+        <?php
+        $exp = "Jumlah Loket Cukup";
+        $waktu = $hitung[0]->r_tunggu_antrian * 3600;
+        $prob = $hitung[0]->probabilitas_teler * 100;
+        $nasabah = $hitung[0]->r_nasabah_antrian;
+
+
+        if ($waktu >= 300 && $nasabah >= 6) {
+          $exp = "Jumlah Loket Kurang";
+        } else if ($waktu <= 1) {
+          $exp = "Jumlah Loket Berlebih";
+        } else if ($waktu <= 0 && $nasabah <= 0) {
+          $exp = "Jumlah Loket Berlebih";
+        }
+
+        ?>
+
       </div>
       <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kesimpulan</div>
+                <!-- <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kesimpulan</div> -->
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold " style="color: red;">Jumlah Loket Cukup</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold " style="color: red;"><?= $exp ?></div>
                   </div>
                 </div>
               </div>

@@ -95,7 +95,7 @@ class Pelayanan extends CI_Controller
             {
                 $miu = $miu;
                 //bangkitkan bilangan acak
-                $AcakInter = rand(0.1 * 10000, 0.9 * 10000) / 10000;
+                $AcakInter = rand(0.1 * 100, 0.3 * 100) / 10000;
                 //hitung waktu pelayanan
                 $Layan = round(abs((1 / $miu) * log10($AcakInter)), 4);
 
@@ -178,8 +178,6 @@ class Pelayanan extends CI_Controller
                     $t_sistem = $WaktuTguSys * $waktu;
 
 
-
-
                     $resultt = [
 
                         'bil_acak' => $waktuselesai[2],
@@ -206,9 +204,7 @@ class Pelayanan extends CI_Controller
                 }
             }
 
-            // echo '<pre>';
-            // print_r($all);
-            // echo '</pre>';
+
 
 
 
@@ -219,9 +215,23 @@ class Pelayanan extends CI_Controller
             $wq = round($TWaktuTgu / $nasabah, 4);
             $ws = round($TWaktuTguSys / $nasabah, 4);
             $lq = ceil($TWaktuTgu / $durasim);
-            $ls = round($TWaktuTguLyn, 4);
+            $ls = round($TWaktuTguSys / $durasim, 4);
             $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
 
+            echo '<pre>';
+            print_r($TWaktuTguLyn);
+            echo '</pre>';
+
+            echo '<pre>';
+            print_r($probabilitas);
+            echo '</pre>';
+
+            $uji = [
+                'durasi' => $durasim,
+                'total_w_tunggu' => $TWaktuTgu,
+                'tw_sisitem' => $TWaktuTguSys,
+                'total_nasabah' => $nasabah
+            ];
 
 
             $result = [
@@ -232,6 +242,14 @@ class Pelayanan extends CI_Controller
                 'probabilitas_teler' => $probabilitas,
 
             ];
+
+            echo '<pre>';
+            print_r($result);
+            echo '</pre>';
+
+            echo '<pre>';
+            print_r($uji);
+            echo '</pre>';
 
             $this->m_simulasi->input_hasil($result);
 
