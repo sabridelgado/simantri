@@ -70,9 +70,17 @@ class Pelayanan extends CI_Controller
     public function simulasi_pelayanan()
 
     {
+
+
+
         $this->m_simulasi->reset_tbhasil();
 
         $query = $this->m_simulasi->get_kedatangan();
+
+        // echo '<pre>';
+        // print_r($query);
+        // echo '</pre>';
+        // die;
         //validasi inputan
         $this->form_validation->set_rules('miu', 'miu', 'required|trim');
         $this->form_validation->set_rules('loket', 'loket', 'required|trim');
@@ -203,7 +211,6 @@ class Pelayanan extends CI_Controller
                     $nasabah++;
                 }
             }
-
 
 
 
