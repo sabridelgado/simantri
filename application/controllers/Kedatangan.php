@@ -55,20 +55,48 @@ class Kedatangan extends CI_Controller
         $this->load->view("attribute/footer", $setting);
     }
 
+
     public function simulasi_kedatangan()
     {
+        $this->h_kedatangan();
 
+        $this->session->set_flashdata('simked', 'Simulasi Berhasil <b>');
+
+        redirect('kedatangan');
+
+        // //=========================================
+        // $data['s_kedatangan'] = $this->m_simulasi->get_kedatangan();
+        // $data['nama1'] = $this->uri->segment(1);
+        // $data['nama'] = $this->uri->segment(2);
+        // //=========================================
+        // $setting['settings_app'] = $this->m_setting->fetch_setting();
+        // $data["user"]         = $this->m_user->fetch_data();
+        // $data["group"]        = $this->m_group->fetch_data();
+        // //=========================================//
+        // $this->load->view("attribute/header", $setting);
+        // $this->load->view("attribute/menus", $setting);
+        // $this->load->view('admin/master_data/simulasi/simulasi_kedatangan', $data);
+        // $this->load->view("attribute/footer", $setting);
+    }
+    public function resetdata()
+    {
+        $this->db->truncate('tb_kedatangan');
+        $this->db->truncate('tb_pelayanan');
+        $this->db->truncate('tb_hasil');
+        $this->db->truncate('tb_parameter');
+        redirect('kedatangan');
+    }
+
+    private function h_kedatangan()
+    {
         //validasi inputan
         $this->form_validation->set_rules('lamda', 'Lamda', 'required|trim');
         $this->form_validation->set_rules('durasi', 'Durasi', 'required|trim');
 
         $lamda = $this->input->post('lamda');
         $jam = $this->input->post('durasi');
-
-
         //==========================================//
         //membuat Variabel
-
         $durasi = $jam * 3600;
 
         $konter = 0;
@@ -141,7 +169,6 @@ class Kedatangan extends CI_Controller
 
                     $konter = abs($WaktuKdt);
                     //hitung konter
-
                 }
                 //  masukan kedalam database
                 $result = [
@@ -163,30 +190,9 @@ class Kedatangan extends CI_Controller
                 $this->m_simulasi->input_kedatangan($result);
                 $this->m_simulasi->input_simulasi($simulasi);
             }
-
-            $data["data"][] = [$AcakInter];
-            $data['s_kedatangan'] = $this->m_simulasi->get_kedatangan();
-            $data['lamda'] = $lamda;
-            $data['durasi'] = $jam;
-            $data['nama1'] = $this->uri->segment(1);
-            $data['nama'] = $this->uri->segment(2);
-            //=========================================
-            $setting['settings_app'] = $this->m_setting->fetch_setting();
-            $data["user"]         = $this->m_user->fetch_data();
-            $data["group"]        = $this->m_group->fetch_data();
-            //=========================================//
-            $this->load->view("attribute/header", $setting);
-            $this->load->view("attribute/menus", $setting);
-            $this->load->view('admin/master_data/simulasi/simulasi_kedatangan', $data);
-            $this->load->view("attribute/footer", $setting);
+            // $data["data"][] = [$AcakInter];
+            // $data['lamda'] = $lamda;
+            // $data['durasi'] = $jam;
         }
-    }
-    public function resetdata()
-    {
-        $this->db->truncate('tb_kedatangan');
-        $this->db->truncate('tb_pelayanan');
-        $this->db->truncate('tb_hasil');
-        $this->db->truncate('tb_parameter');
-        redirect('kedatangan');
     }
 }

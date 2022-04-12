@@ -103,6 +103,7 @@
                     <tr>
                         <th>Pelayanan</th>
                         <th>Bilangan Acak</th>
+                        <th>Loket Melayani</th>
                         <th>Waktu Mulai</th>
                         <th>Waktu Selesai</th>
                         <th>Waktu Tunggu</th>
@@ -128,6 +129,7 @@
                             <tr>
                                 <td><?= $keys->id_pelayanan  ?></td>
                                 <td><?= $keys->bil_acak  ?></td>
+                                <td>loket-<?= $keys->loket  ?></td>
                                 <td><?= ubahwaktu($keys->w_mulai)  ?></td>
                                 <td><?= ubahwaktu($keys->w_selesai_layanan)  ?></td>
                                 <td><?= ubahwaktu($keys->w_tunggu_antrian)  ?></td>
