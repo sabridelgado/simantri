@@ -156,7 +156,7 @@ class Kedatangan extends CI_Controller
                 } else {
 
                     //bangkitkan bilangan acak
-                    $AcakInter = rand(0.5 * 1000, 0.9 * 1000) / 10000;
+                    $AcakInter = rand(0.8 * 1000, 0.9 * 1000) / 10000;
                     //hitung waktu antar kedatangan
                     $InterKdt = round(abs((1 / $lamda) * log10($AcakInter)), 4);
 

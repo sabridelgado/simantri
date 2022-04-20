@@ -73,10 +73,18 @@ class Pelayanan extends CI_Controller
     public function simulasi_pelayanan()
 
     {
+
+
+
         $this->m_simulasi->reset_tbhasil();
         $this->m_simulasi->reset_tbpelayanan();
 
         $query = $this->m_simulasi->get_kedatangan();
+
+        // echo '<pre>';
+        // print_r($query);
+        // echo '</pre>';
+        // die;
         //validasi inputan
         if ($query != null) {
 
@@ -162,6 +170,7 @@ class Pelayanan extends CI_Controller
                         $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn, $loketKe];
                     }
                 }
+
                 //=========================== 
                 //perhitungan
                 $waktu = $q->durasi * 3600;
@@ -181,24 +190,55 @@ class Pelayanan extends CI_Controller
                     'w_tunggu_antrian' => $t_antrian,
                     'w_tunggu_sistem' => $t_sistem
                 ];
-
-                //====================================
-                $parameter['p_miu'] = $miu;
-                $parameter['p_loket'] = $loket;
-                $this->m_widget->update_data($parameter);
-                $this->m_simulasi->input_pelayanan($resultt);
-
-                //=====================================
-                //hitung totol waktu tunggu
-                $TWaktuTgu = $TWaktuTgu + $WaktuTgu;
-                //hitung totol waktu layanan
-                $TWaktuTguLyn = $TWaktuTguLyn + $waktuselesai[1];
-                //hitung totol waktu tunggu sistem
-                $TWaktuTguSys = $TWaktuTguSys + $WaktuTguSys;
-
-                $nasabah++;
             }
+
+
+
+
+
+            // die;
+
+            $durasim = $q->durasi;
+            $wq = round($TWaktuTgu / $nasabah, 4);
+            $ws = round($TWaktuTguSys / $nasabah, 4);
+            $lq = ceil($TWaktuTgu / $durasim);
+            $ls = round($TWaktuTguSys / $durasim, 4);
+            $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
+
+            echo '<pre>';
+            print_r($TWaktuTguLyn);
+            echo '</pre>';
+
+            echo '<pre>';
+            print_r($probabilitas);
+            echo '</pre>';
+
+            $uji = [
+                'durasi' => $durasim,
+                'total_w_tunggu' => $TWaktuTgu,
+                'tw_sisitem' => $TWaktuTguSys,
+                'total_nasabah' => $nasabah
+            ];
+
+
+
+            //====================================
+            $parameter['p_miu'] = $miu;
+            $parameter['p_loket'] = $loket;
+            $this->m_widget->update_data($parameter);
+            $this->m_simulasi->input_pelayanan($resultt);
+
+            //=====================================
+            //hitung totol waktu tunggu
+            $TWaktuTgu = $TWaktuTgu + $WaktuTgu;
+            //hitung totol waktu layanan
+            $TWaktuTguLyn = $TWaktuTguLyn + $waktuselesai[1];
+            //hitung totol waktu tunggu sistem
+            $TWaktuTguSys = $TWaktuTguSys + $WaktuTguSys;
+
+            $nasabah++;
         }
+
 
 
         //==============================================================
@@ -232,7 +272,7 @@ class Pelayanan extends CI_Controller
     {
         $miu = $miu;
         //bangkitkan bilangan acak
-        $AcakInter = rand(0.1 * 100, 0.3 * 100) / 10000;
+        $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
         //hitung waktu pelayanan
         $Layan = round(abs((1 / $miu) * log10($AcakInter)), 4);
 
@@ -274,9 +314,7 @@ class Pelayanan extends CI_Controller
         // $this->db->truncate('tb_parameter');
         redirect('pelayanan');
     }
-
-
+}
     // echo '<pre>';
     // print_r($uji);
     // echo '</pre>';
-}
