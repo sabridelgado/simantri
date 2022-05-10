@@ -198,27 +198,28 @@ class Pelayanan extends CI_Controller
 
             // die;
 
-            $durasim = $q->durasi;
-            $wq = round($TWaktuTgu / $nasabah, 4);
-            $ws = round($TWaktuTguSys / $nasabah, 4);
-            $lq = ceil($TWaktuTgu / $durasim);
-            $ls = round($TWaktuTguSys / $durasim, 4);
-            $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
+            // $durasim = $q->durasi;
+            // $wq = round($TWaktuTgu / $nasabah, 4);
+            // $wl = round($TWaktuTguLyn / $nasabah, 4);
+            // $lq = ceil($TWaktuTgu / $durasim);
+            // $ls = round($TWaktuTguSys / $durasim, 4);
+            // $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
+            // $totalwl = $TWaktuTguLyn / $loket;
 
-            echo '<pre>';
-            print_r($TWaktuTguLyn);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($TWaktuTguLyn);
+            // echo '</pre>';
 
-            echo '<pre>';
-            print_r($probabilitas);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($probabilitas);
+            // echo '</pre>';
 
-            $uji = [
-                'durasi' => $durasim,
-                'total_w_tunggu' => $TWaktuTgu,
-                'tw_sisitem' => $TWaktuTguSys,
-                'total_nasabah' => $nasabah
-            ];
+            // $uji = [
+            //     'durasi' => $durasim,
+            //     'total_w_tunggu' => $TWaktuTgu,
+            //     'tw_sisitem' => $TWaktuTguSys,
+            //     'total_nasabah' => $nasabah
+            // ];
 
 
 
@@ -246,22 +247,25 @@ class Pelayanan extends CI_Controller
         //rata-rata waktu tunggu antrian
         $wq = round($TWaktuTgu / $nasabah, 4);
         //rata-rata waktu tunggu sistem
-        $ws = round($TWaktuTguSys / $nasabah, 4);
+        $wl = round($TWaktuTguLyn / $nasabah, 4);
         //rata-rata nasabah dalam antrian
         $lq = ceil($TWaktuTgu / $durasim);
         //rata-rata nasabah dalam sistem
         $ls = round($TWaktuTguSys / $durasim, 4);
         //probabilitas server sibuk
         $probabilitas = round($TWaktuTguLyn / ($loket * $durasim), 5);
+        //total waktu layanan
+        $totalwl = $TWaktuTguLyn / $loket;
 
         //memasukan data dalam database
 
         $result = [
             'r_tunggu_antrian' => $wq,
-            'r_tunggu_sistem' => $ws,
+            'r_tunggu_layan' => $wl,
             'r_nasabah_antrian' => $lq,
             'r_nasabah_sistem' => $ls,
             'probabilitas_teler' => $probabilitas,
+            'r_layan_total' => $totalwl,
 
         ];
         $this->m_simulasi->input_hasil($result);
@@ -270,9 +274,20 @@ class Pelayanan extends CI_Controller
 
     private function hitung($Mlayan, $miu)
     {
+
+        $query = $this->m_simulasi->get_kedatangan();
+        foreach ($query as $q) {
+        }
+
         $miu = $miu;
+
         //bangkitkan bilangan acak
-        $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
+        if ($q->durasi == 1) {
+            $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
+        } else {
+            $AcakInter = rand(0.2 * 1000, 0.5 * 1000) / 1000;
+        }
+
         //hitung waktu pelayanan
         $Layan = round(abs((1 / $miu) * log10($AcakInter)), 4);
 
@@ -305,7 +320,9 @@ class Pelayanan extends CI_Controller
         }
     }
 
-
+    public function coba()
+    {
+    }
     public function resetdata()
     {
 

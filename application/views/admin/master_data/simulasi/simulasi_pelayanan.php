@@ -105,7 +105,7 @@
                         <th>Bilangan Acak</th>
                         <th>Loket Melayani</th>
                         <th>Waktu Mulai</th>
-                        <th>Waktu Selesai</th>
+                        <th>Waktu Layanan</th>
                         <th>Waktu Tunggu</th>
                         <th>Waku Tunggu Sys</th>
                     </tr>
@@ -131,7 +131,7 @@
                                 <td><?= $keys->bil_acak  ?></td>
                                 <td>loket-<?= $keys->loket  ?></td>
                                 <td><?= ubahwaktu($keys->w_mulai)  ?></td>
-                                <td><?= ubahwaktu($keys->w_selesai_layanan)  ?></td>
+                                <td><?= ubahwaktu($keys->w_layanan)  ?></td>
                                 <td><?= ubahwaktu($keys->w_tunggu_antrian)  ?></td>
                                 <td><?= ubahwaktu($keys->w_tunggu_sistem)  ?></td>
                             </tr>

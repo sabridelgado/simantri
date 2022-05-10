@@ -24,25 +24,7 @@
       </div>
 
 
-      <div class="col-xl-4 col-md-4 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User/Pengguna Sistem</div>
-                <div class="row no-gutters align-items-center">
-                  <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $user ?></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-user fa-2x text-gray-300"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
@@ -121,6 +103,25 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rata -rata Waktu Pelayanan</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($hitung[0]->r_tunggu_layan * 3600)  ?></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rata -rata Waktu Tunggu</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
@@ -155,6 +156,25 @@
 
         ?>
 
+      </div>
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">total waktu pelayanan</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($hitung[0]->r_layan_total * 3600)  ?></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
