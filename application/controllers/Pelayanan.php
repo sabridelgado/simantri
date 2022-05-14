@@ -276,6 +276,7 @@ class Pelayanan extends CI_Controller
     {
 
         $query = $this->m_simulasi->get_kedatangan();
+        $query1 = $this->m_simulasi->get_simulasi();
         foreach ($query as $q) {
         }
 
