@@ -171,7 +171,7 @@
     let arrayTimeIn = [
         <?php foreach ($s_layan as $keys) { ?> {
                 'nameOwner': '<?= $keys->id_pelayanan ?>',
-                'timeIn': '<?= round($keys->wk_waktu) ?>',
+                'timeIn': '<?= round($keys->w_mulai) ?>',
                 'duration': '<?= round($keys->w_layanan) ?>', //= 12
             },
         <?php }; ?>

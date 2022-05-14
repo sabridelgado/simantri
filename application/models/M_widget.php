@@ -58,6 +58,22 @@ class m_widget extends CI_Model
     }
     return false;
   }
+  public function get_selesai()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_pelayanan');
+    $this->db->order_by('w_selesai_layanan', 'DESC');
+    $this->db->limit(1);
+    //$this->db->where('b.id_sungai', $id);
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
 
 
   function __destruct()

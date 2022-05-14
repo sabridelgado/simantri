@@ -7,7 +7,7 @@
   <?php if ($this->session->userdata('group_id') == 1) { ?>
     <div class="row">
       <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -25,7 +25,7 @@
 
 
 
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -48,7 +48,7 @@
 
 
 
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -98,7 +98,7 @@
 
         return "$jam : $menit : $detik";
       } ?>
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -117,7 +117,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-md-4 mb-4">
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -137,27 +137,27 @@
         </div>
       </div>
 
-      <div class="col-xl-4 col-md-4 mb-4">
-
-        <?php
-        $exp = "Jumlah Loket Cukup";
-        $waktu = $hitung[0]->r_tunggu_antrian * 3600;
-        $prob = $hitung[0]->probabilitas_teler * 100;
-        $nasabah = $hitung[0]->r_nasabah_antrian;
 
 
-        if ($waktu >= 300 && $nasabah >= 6) {
-          $exp = "Jumlah Loket Kurang";
-        } else if ($waktu <= 1) {
-          $exp = "Jumlah Loket Berlebih";
-        } else if ($waktu <= 0 && $nasabah <= 0) {
-          $exp = "Jumlah Loket Berlebih";
-        }
+      <?php
+      $exp = "Jumlah Loket Cukup";
+      $waktu = $hitung[0]->r_tunggu_antrian * 3600;
+      $prob = $hitung[0]->probabilitas_teler * 100;
+      $nasabah = $hitung[0]->r_nasabah_antrian;
 
-        ?>
 
-      </div>
-      <div class="col-xl-4 col-md-4 mb-4">
+      if ($waktu >= 300 && $nasabah >= 6) {
+        $exp = "Jumlah Loket Kurang";
+      } else if ($waktu <= 1) {
+        $exp = "Jumlah Loket Berlebih";
+      } else if ($waktu <= 0 && $nasabah <= 0) {
+        $exp = "Jumlah Loket Berlebih";
+      }
+
+      ?>
+
+
+      <div class="col-xl-3 col-md-3 mb-3">
         <div class="card border-left-info shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -175,6 +175,27 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-xl-3 col-md-3 mb-3">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Antrian Terakhir Selesai</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($selesai[0]->w_selesai_layanan)  ?></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-4 mb-4">
       </div>
       <div class="col-xl-4 col-md-4 mb-4">
         <div class="card border-left-info shadow h-100 py-2">

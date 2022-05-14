@@ -136,10 +136,10 @@ class Pelayanan extends CI_Controller
                 if ($nasabah < $loket) {
                     $HtgSvr = $nasabah;
                     $WaktuDtg = $q->w_kedatangan;
-                    $MulaiLyn = $WaktuDtg;
+                    $MulaiLyn = $WaktuDtg + 0.0167;
                     $waktuselesai = $this->hitung($MulaiLyn, $miu);
                     $loketKe = $this->pilihLoket($waktuselesai[0], $MulaiLyn, $loket);
-                    $WaktuTgu = $MulaiLyn - $WaktuDtg;
+                    $WaktuTgu = ($MulaiLyn - $WaktuDtg);
                     $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
                     $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn, $loketKe];
                 } else {
@@ -155,7 +155,7 @@ class Pelayanan extends CI_Controller
                     }
                     $kecil = min($fixkecil);
                     if ($WaktuDtg > $kecil) {
-                        $MulaiLyn = $WaktuDtg;
+                        $MulaiLyn = $WaktuDtg  + 0.0167;
                         $waktuselesai = $this->hitung($MulaiLyn, $miu);
                         $WaktuTgu = $MulaiLyn - $WaktuDtg;
                         $loketKe = $this->pilihLoket($waktuselesai[0], $MulaiLyn, $loket);
