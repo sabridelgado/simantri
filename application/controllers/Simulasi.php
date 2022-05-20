@@ -67,7 +67,7 @@ class Simulasi extends CI_Controller
 
             $this->load->view("attribute/header", $setting);
             $this->load->view("attribute/menus", $setting);
-            $this->load->view('admin/master_data/simulasi/hasil', $data);
+            $this->load->view('admin/master_data/simulasi/simulasi_proses', $data);
             $this->load->view("attribute/footer", $setting);
             # code...
         }
@@ -75,7 +75,18 @@ class Simulasi extends CI_Controller
 
     public function animasi()
     {
+        $query = $this->m_simulasi->get_kedatangan();
 
+        if ($query == null) {
+            $data['s_kedatangan'] = $query;
+            $pesan = 'Tabel Kedatangan Is NULL';
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger" role="alert">' . $pesan . '</div>'
+            );
+            redirect('kedatangan');
+        }
 
         $data['s_layan'] = $this->m_simulasi->get_simulasi();
         $data['parameter'] = $this->m_widget->get_parameter();
@@ -90,6 +101,25 @@ class Simulasi extends CI_Controller
         $this->load->view("attribute/header", $setting);
         $this->load->view("attribute/menus", $setting);
         $this->load->view('admin/master_data/simulasi/simulasi_animasi', $data);
+        $this->load->view("attribute/footer", $setting);
+    }
+    public function hasil()
+    {
+
+
+        $data['hasil'] = $this->m_simulasi->get_kesimpulan();
+
+
+        //=========================================
+        $data['nama'] = $this->uri->segment(1);
+        $setting['settings_app'] = $this->m_setting->fetch_setting();
+        $data["user"]         = $this->m_user->fetch_data();
+        $data["group"]        = $this->m_group->fetch_data();
+        //----------------------------//
+
+        $this->load->view("attribute/header", $setting);
+        $this->load->view("attribute/menus", $setting);
+        $this->load->view('admin/master_data/simulasi/simulasi_hasil', $data);
         $this->load->view("attribute/footer", $setting);
     }
 }

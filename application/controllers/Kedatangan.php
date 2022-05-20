@@ -84,6 +84,7 @@ class Kedatangan extends CI_Controller
         $this->db->truncate('tb_pelayanan');
         $this->db->truncate('tb_hasil');
         $this->db->truncate('tb_parameter');
+        $this->db->truncate('tb_kesimpulan');
         redirect('kedatangan');
     }
 
@@ -146,7 +147,7 @@ class Kedatangan extends CI_Controller
             // $this->m_simulasi->reset_tbparameter();
 
             //rumus mendcari kedatangan nasabah
-            while ($konter <= $durasi) {
+            while ($konter < $lamda) {
 
                 $kedatangan = $kedatangan + 1;
                 if ($kedatangan == 1) {
@@ -156,7 +157,7 @@ class Kedatangan extends CI_Controller
                 } else {
 
                     //bangkitkan bilangan acak
-                    $AcakInter = rand(0.8 * 1000,  1 * 1000) / 10000;
+                    $AcakInter = rand(0.9 * 1000,  1 * 1000) / 10000;
                     //hitung waktu antar kedatangan
                     $InterKdt = round(abs((1 / $lamda) * log10($AcakInter)), 4);
 
@@ -167,11 +168,13 @@ class Kedatangan extends CI_Controller
 
                     $WaktuKdt = $TinterKdt * 3600 * $jam;
 
-                    $konter = abs($WaktuKdt);
+
                     //hitung konter
                 }
                 //  masukan kedalam database
                 $result = [
+
+                    'lamda' => $lamda,
                     'durasi' => $jam,
                     'bil_acak' => $AcakInter,
                     'i_waktu_kedatangan' => $InterKdt,
@@ -185,11 +188,12 @@ class Kedatangan extends CI_Controller
                     'id_pelayanan' => $kedatangan
                 ];
 
-                $parameter['p_lamda'] = $lamda;
-                $this->m_widget->update_data($parameter);
+
                 $this->m_simulasi->input_kedatangan($result);
                 $this->m_simulasi->input_simulasi($simulasi);
+                $konter = $konter + 1;
             }
+
             // $data["data"][] = [$AcakInter];
             // $data['lamda'] = $lamda;
             // $data['durasi'] = $jam;

@@ -40,6 +40,11 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('simulasi') ?>">
           <i class="fa fa-fw fa-desktop"></i>
+          <span>Simulasi Proses</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('simulasi/hasil') ?>">
+          <i class="fa fa-fw fa-table"></i>
           <span>Simulasi Hasil</span></a>
       </li>
       <li class="nav-item">

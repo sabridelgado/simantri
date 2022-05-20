@@ -76,7 +76,8 @@ class Pelayanan extends CI_Controller
 
 
 
-        $this->m_simulasi->reset_tbhasil();
+        // $this->m_simulasi->reset_tbhasil();
+        // $this->m_simulasi->reset_tbparameter();
         $this->m_simulasi->reset_tbpelayanan();
 
         $query = $this->m_simulasi->get_kedatangan();
@@ -91,6 +92,7 @@ class Pelayanan extends CI_Controller
             //=============================
             //metode eksponensial
             $this->_h_pelayanan();
+            $this->_kesimpulan();
             //=============================
             redirect('pelayanan');
         } else {
@@ -137,7 +139,7 @@ class Pelayanan extends CI_Controller
                     $HtgSvr = $nasabah;
                     $WaktuDtg = $q->w_kedatangan;
                     $MulaiLyn = $WaktuDtg + 0.0167;
-                    $waktuselesai = $this->hitung($MulaiLyn, $miu);
+                    $waktuselesai = $this->hitung_layan($MulaiLyn, $miu);
                     $loketKe = $this->pilihLoket($waktuselesai[0], $MulaiLyn, $loket);
                     $WaktuTgu = ($MulaiLyn - $WaktuDtg);
                     $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
@@ -154,16 +156,17 @@ class Pelayanan extends CI_Controller
                         $fixkecil[] = $tampungkecil[$i];
                     }
                     $kecil = min($fixkecil);
-                    if ($WaktuDtg > $kecil) {
+                    $datang = $WaktuDtg + 0.0167;
+                    if ($datang > $kecil) {
                         $MulaiLyn = $WaktuDtg  + 0.0167;
-                        $waktuselesai = $this->hitung($MulaiLyn, $miu);
+                        $waktuselesai = $this->hitung_layan($MulaiLyn, $miu);
                         $WaktuTgu = $MulaiLyn - $WaktuDtg;
                         $loketKe = $this->pilihLoket($waktuselesai[0], $MulaiLyn, $loket);
                         $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
                         $all[] = [$waktuselesai[0], $WaktuTgu, $WaktuTguSys, $WaktuDtg, $MulaiLyn, $loketKe];
                     } else {
                         $MulaiLyn = $kecil;
-                        $waktuselesai = $this->hitung($MulaiLyn, $miu);
+                        $waktuselesai = $this->hitung_layan($MulaiLyn, $miu);
                         $WaktuTgu = $MulaiLyn - $WaktuDtg;
                         $loketKe = $this->pilihLoket($waktuselesai[0], $MulaiLyn, $loket);
                         $WaktuTguSys = round($waktuselesai[0] - $WaktuDtg, 4);
@@ -223,10 +226,7 @@ class Pelayanan extends CI_Controller
 
 
 
-            //====================================
-            $parameter['p_miu'] = $miu;
-            $parameter['p_loket'] = $loket;
-            $this->m_widget->update_data($parameter);
+
             $this->m_simulasi->input_pelayanan($resultt);
 
             //=====================================
@@ -249,7 +249,7 @@ class Pelayanan extends CI_Controller
         //rata-rata waktu tunggu sistem
         $wl = round($TWaktuTguLyn / $nasabah, 4);
         //rata-rata nasabah dalam antrian
-        $lq = ceil($TWaktuTgu / $durasim);
+        $lq = round($TWaktuTgu / $durasim);
         //rata-rata nasabah dalam sistem
         $ls = round($TWaktuTguSys / $durasim, 4);
         //probabilitas server sibuk
@@ -270,20 +270,30 @@ class Pelayanan extends CI_Controller
         ];
         $this->m_simulasi->input_hasil($result);
         //=========================================
+
+        $parameter = [
+            'p_lamda' => $q->lamda,
+            'p_miu' => $miu,
+            'p_loket' => $loket
+
+        ];
+
+
+        $this->m_simulasi->input_parameter($parameter);
     }
 
-    private function hitung($Mlayan, $miu)
+
+
+    private function hitung_layan($Mlayan, $miu)
     {
 
         $query = $this->m_simulasi->get_kedatangan();
-        $query1 = $this->m_simulasi->get_simulasi();
-        foreach ($query as $q) {
-        }
+
 
         $miu = $miu;
 
         //bangkitkan bilangan acak
-        if ($q->durasi == 1) {
+        if ($query[0]->durasi == 1) {
             $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
         } else {
             $AcakInter = rand(0.2 * 1000, 0.5 * 1000) / 1000;
@@ -301,6 +311,29 @@ class Pelayanan extends CI_Controller
 
 
         return $nilai;
+    }
+
+    private function _kesimpulan()
+    {
+
+        $hasil = $this->m_widget->get_hasil();
+        $param = $this->m_widget->get_parameter();
+        $waktu = $hasil[0]->r_tunggu_antrian * 3600;
+        $exp = 1;
+
+        if ($waktu >= 300) {
+            $exp = 2;
+        } else if ($waktu <= 61) {
+            $exp = 3;
+        }
+
+        $data = [
+            'id_hasil' => $hasil[0]->id_hasil,
+            'id_parameter' => $param[0]->id,
+            'id_saran' => $exp
+
+        ];
+        $this->m_simulasi->input_kesimpulan($data);
     }
 
     public function pilihLoket($waktuSelesai, $waktuMulai, $totalLoket)
@@ -323,13 +356,28 @@ class Pelayanan extends CI_Controller
 
     public function coba()
     {
+
+
+        $hasil = $this->m_widget->get_hasil();
+        $param = $this->m_widget->get_parameter();
+        $waktu = $hasil[0]->r_tunggu_antrian * 3600;
+        $exp = 1;
+
+        if ($waktu >= 300) {
+            $exp = 2;
+        } else if ($waktu <= 61) {
+            $exp = 3;
+        }
     }
+
     public function resetdata()
     {
 
         $this->db->truncate('tb_pelayanan');
         $this->db->truncate('tb_hasil');
-        // $this->db->truncate('tb_parameter');
+        $this->db->truncate('tb_parameter');
+        $this->db->truncate('tb_kesimpulan');
+
         redirect('pelayanan');
     }
 }
