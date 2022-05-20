@@ -103,7 +103,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rata -rata Waktu Pelayanan</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rata -rata Waktu Layanan</div>
+                <div class="text-xl  text-info text-uppercase mb-1">(hh:mm:ss)</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($tampil[0]->r_tunggu_layan * 3600)  ?></div>
@@ -123,6 +124,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rata -rata Waktu Tunggu</div>
+                <div class="text-xl  text-info text-uppercase mb-1">(hh:mm:ss)</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($tampil[0]->r_tunggu_antrian * 3600)  ?></div>
@@ -147,7 +149,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">total waktu pelayanan</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Waktu Layanan</div>
+                <div class="text-xl  text-info text-uppercase mb-1">(hh:mm:ss)</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($tampil[0]->r_layan_total * 3600)  ?></div>
@@ -167,6 +170,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Antrian Terakhir Selesai</div>
+                <div class="text-xl  text-info text-uppercase mb-1">(hh:mm:ss)</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= ubahwaktu($selesai[0]->w_selesai_layanan)  ?></div>

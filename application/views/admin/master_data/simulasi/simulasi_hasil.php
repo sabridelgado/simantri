@@ -73,9 +73,9 @@
     </div>
 
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive table table-striped">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th>Nasabah</th>
                         <th>Rata-Rata Layanan</th>

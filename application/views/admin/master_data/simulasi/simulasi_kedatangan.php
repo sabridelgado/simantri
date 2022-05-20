@@ -129,14 +129,14 @@
     </div>
 
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive table table-striped">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <thead class="text-center ">
                     <tr>
                         <th style="width: 15%;">Kedatangan</th>
                         <th style="">Bilangan Acak</th>
-                        <th>Interfal Waktu Kedatangan</th>
-                        <th>Waktu Kedatangan</th>
+                        <th>Interfal Waktu Kedatangan <br>(hh:mm:ss)</th>
+                        <th>Waktu Kedatangan <br>(hh:mm:ss)</th>
                     </tr>
                 </thead>
 

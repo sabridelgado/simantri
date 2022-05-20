@@ -321,11 +321,19 @@ class Pelayanan extends CI_Controller
         $waktu = $hasil[0]->r_tunggu_antrian * 3600;
         $exp = 1;
 
-        if ($waktu >= 300) {
+        if ($hasil[0]->probabilitas_teler > 1) {
             $exp = 2;
-        } else if ($waktu <= 61) {
-            $exp = 3;
+        } else {
+
+            if ($waktu >= 300) {
+                $exp = 2;
+            } else if ($waktu <= 61) {
+                $exp = 3;
+            } else {
+                $exp = 1;
+            }
         }
+
 
         $data = [
             'id_hasil' => $hasil[0]->id_hasil,

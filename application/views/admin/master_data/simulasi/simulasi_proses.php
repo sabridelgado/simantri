@@ -107,18 +107,18 @@
     </div>
 
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive table table-striped">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Nasabah</th>
                         <th>Loket Melayani</th>
-                        <th>Waktu Datang</th>
-                        <th>Waktu Mulai</th>
-                        <th>Lama Layanan</th>
-                        <th>Waktu Selesai</th>
-                        <th>Waktu Tunggu</th>
-                        <th>Waku Tunggu Sys</th>
+                        <th>Waktu Datang <br>(hh:mm:ss)</th>
+                        <th>Waktu Mulai <br>(hh:mm:ss)</th>
+                        <th>Lama Layanan <br>(hh:mm:ss)</th>
+                        <th>Waktu Selesai <br>(hh:mm:ss)</th>
+                        <th>Waktu Tunggu <br>(hh:mm:ss)</th>
+                        <th>Waku Tunggu Sys <br>(hh:mm:ss)</th>
                     </tr>
                 </thead>
 
