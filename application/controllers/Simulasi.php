@@ -41,8 +41,7 @@ class Simulasi extends CI_Controller
         //simulasi kedatangan
 
         $query = $this->m_simulasi->get_kedatangan();
-
-
+        $query1 = $this->m_simulasi->get_pelayanan();
         if ($query == null) {
             $data['s_kedatangan'] = $query;
             $pesan = 'Tabel Kedatangan Is NULL';
@@ -52,6 +51,13 @@ class Simulasi extends CI_Controller
                 '<div class="alert alert-danger" role="alert">' . $pesan . '</div>'
             );
             redirect('kedatangan');
+        } else if ($query1 == null) {
+            $pesan = 'Tabel Pelayanan Is NULL';
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger" role="alert">' . $pesan . '</div>'
+            );
+            redirect('pelayanan');
         } else {
 
 
@@ -76,6 +82,7 @@ class Simulasi extends CI_Controller
     public function animasi()
     {
         $query = $this->m_simulasi->get_kedatangan();
+        $query1 = $this->m_simulasi->get_pelayanan();
 
         if ($query == null) {
             $data['s_kedatangan'] = $query;
@@ -86,6 +93,13 @@ class Simulasi extends CI_Controller
                 '<div class="alert alert-danger" role="alert">' . $pesan . '</div>'
             );
             redirect('kedatangan');
+        } else if ($query1 == null) {
+            $pesan = 'Tabel Pelayanan Is NULL';
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-danger" role="alert">' . $pesan . '</div>'
+            );
+            redirect('pelayanan');
         }
 
         $data['s_layan'] = $this->m_simulasi->get_simulasi();

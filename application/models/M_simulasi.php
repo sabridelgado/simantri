@@ -80,10 +80,9 @@ class M_simulasi extends CI_Model
     public function get_simulasi()
     {
 
-        $this->db->select('tb_kedatangan.*,tb_pelayanan.*,tb_simulasi.*')
-            ->from('tb_simulasi')
-            ->join('tb_kedatangan', 'tb_simulasi.id_kedatangan = tb_kedatangan.id_kedatangan')
-            ->join('tb_pelayanan ', 'tb_simulasi.id_pelayanan = tb_pelayanan.id_pelayanan');
+        $this->db->select('tb_kedatangan.*,tb_pelayanan.*')
+            ->from('tb_kedatangan')
+            ->join('tb_pelayanan ', 'tb_kedatangan.id_pelayanan = tb_pelayanan.id_pelayanan');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
@@ -98,11 +97,10 @@ class M_simulasi extends CI_Model
     public function get_kesimpulan()
     {
 
-        $this->db->select('tb_hasil.*,tb_parameter.*,tb_kesimpulan.*,tb_saran.*')
-            ->from('tb_kesimpulan')
-            ->join('tb_hasil', 'tb_kesimpulan.id_hasil = tb_hasil.id_hasil')
-            ->join('tb_parameter ', 'tb_kesimpulan.id_parameter = tb_parameter.id')
-            ->join('tb_saran ', 'tb_kesimpulan.id_saran = tb_saran.id_saran');
+        $this->db->select('tb_hasil.*,tb_parameter.*,tb_saran.*')
+            ->from('tb_hasil')
+            ->join('tb_parameter ', 'tb_hasil.id_parameter = tb_parameter.id')
+            ->join('tb_saran ', 'tb_hasil.id_saran = tb_saran.id_saran');
         $this->db->order_by('tb_hasil.waktu', 'DESC');
 
         $query = $this->db->get();
@@ -113,10 +111,6 @@ class M_simulasi extends CI_Model
             return $data;
         }
         return false;
-    }
-    public function input_kesimpulan($data)
-    {
-        $this->db->insert('tb_kesimpulan', $data);
     }
 
     public function input_hasil($data)
@@ -138,9 +132,8 @@ class M_simulasi extends CI_Model
         $query = $this->db->truncate('tb_parameter');
         return $query;
     }
-    public function reset_kesimpulan()
+    public function delete($id)
     {
-        $query = $this->db->truncate('tb_kesimpulan');
-        return $query;
+        $this->db->delete('tb_hasil', array('id_hasil' => $id));
     }
 }

@@ -1,9 +1,38 @@
 <div class="container-fluid">
-
+    <?php
+    if ($this->session->flashdata('add')) {
+        $message = $this->session->flashdata('add');
+        $heading = '#Tambah User';
+    } else if ($this->session->flashdata('update')) {
+        $message = $this->session->flashdata('update');
+        $heading = '#Update User';
+    } else if ($this->session->flashdata('delete')) {
+        $message = $this->session->flashdata('delete');
+        $heading = '#Delete User';
+    } else if ($this->session->flashdata('simpel')) {
+        $message = $this->session->flashdata('simpel');
+        $heading = '#Simulasi Pelayanan';
+    }
+    ?>
+    <?php if (isset($message)) { ?>
+        <script>
+            $(document).ready(function() {
+                $.toast({
+                    text: '<?php echo $message; ?>',
+                    heading: '<?php echo $heading; ?>',
+                    position: 'top-right',
+                    width: 'auto',
+                    showHideTransition: 'slide',
+                    icon: 'info',
+                    hideAfter: 5000
+                })
+            });
+        </script>
+    <?php } ?>
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?= ucwords($nama) ?></h1>
     <hr>
-
+    <?= $this->session->flashdata('message') ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">

@@ -49,11 +49,10 @@ class m_widget extends CI_Model
   public function get_home()
   {
 
-    $this->db->select('tb_hasil.*,tb_parameter.*,tb_kesimpulan.*,tb_saran.*')
-      ->from('tb_kesimpulan')
-      ->join('tb_hasil', 'tb_kesimpulan.id_hasil = tb_hasil.id_hasil')
-      ->join('tb_parameter ', 'tb_kesimpulan.id_parameter = tb_parameter.id')
-      ->join('tb_saran ', 'tb_kesimpulan.id_saran = tb_saran.id_saran');
+    $this->db->select('tb_hasil.*,tb_parameter.*,tb_saran.*')
+      ->from('tb_hasil')
+      ->join('tb_parameter ', 'tb_hasil.id_parameter = tb_parameter.id')
+      ->join('tb_saran ', 'tb_hasil.id_saran = tb_saran.id_saran');
     $this->db->order_by('tb_hasil.waktu', 'DESC');
     $this->db->limit(1);
     $query = $this->db->get();

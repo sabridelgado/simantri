@@ -82,9 +82,9 @@ class Kedatangan extends CI_Controller
     {
         $this->db->truncate('tb_kedatangan');
         $this->db->truncate('tb_pelayanan');
-        $this->db->truncate('tb_hasil');
+        // $this->db->truncate('tb_hasil');
         $this->db->truncate('tb_parameter');
-        $this->db->truncate('tb_kesimpulan');
+
         redirect('kedatangan');
     }
 
@@ -92,13 +92,13 @@ class Kedatangan extends CI_Controller
     {
         //validasi inputan
         $this->form_validation->set_rules('lamda', 'Lamda', 'required|trim');
-        $this->form_validation->set_rules('durasi', 'Durasi', 'required|trim');
+        // $this->form_validation->set_rules('durasi', 'Durasi', 'required|trim');
 
         $lamda = $this->input->post('lamda');
         $jam = $this->input->post('durasi');
         //==========================================//
         //membuat Variabel
-        $durasi = $jam * 3600;
+        $durasi = 3600;
 
         $konter = 0;
 
@@ -143,7 +143,7 @@ class Kedatangan extends CI_Controller
             //perulangan kedatangan nasabah
             $this->m_simulasi->reset_tbkedatangan();
             $this->m_simulasi->reset_tbpelayanan();
-            $this->m_simulasi->reset_tbsimulasi();
+
             // $this->m_simulasi->reset_tbparameter();
 
             //rumus mendcari kedatangan nasabah
@@ -164,9 +164,9 @@ class Kedatangan extends CI_Controller
                     //hitung waktu kedatangan
                     $TinterKdt = round($TinterKdt + $InterKdt, 4);
 
-                    $InterWaktuKdt = $InterKdt * 3600 * $jam;
+                    $InterWaktuKdt = $InterKdt * 3600;
 
-                    $WaktuKdt = $TinterKdt * 3600 * $jam;
+                    $WaktuKdt = $TinterKdt * 3600;
 
 
                     //hitung konter
@@ -175,22 +175,21 @@ class Kedatangan extends CI_Controller
                 $result = [
 
                     'lamda' => $lamda,
-                    'durasi' => $jam,
+                    'durasi' => 1,
                     'bil_acak' => $AcakInter,
                     'i_waktu_kedatangan' => $InterKdt,
                     'w_kedatangan' => $TinterKdt,
                     'iwk_waktu' => $InterWaktuKdt,
-                    'wk_waktu' => $WaktuKdt
-                ];
-                $simulasi = [
-
-                    'id_kedatangan' => $kedatangan,
+                    'wk_waktu' => $WaktuKdt,
                     'id_pelayanan' => $kedatangan
                 ];
 
 
+
+
+
                 $this->m_simulasi->input_kedatangan($result);
-                $this->m_simulasi->input_simulasi($simulasi);
+
                 $konter = $konter + 1;
             }
 

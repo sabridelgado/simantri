@@ -92,7 +92,7 @@ class Pelayanan extends CI_Controller
             //=============================
             //metode eksponensial
             $this->_h_pelayanan();
-            $this->_kesimpulan();
+            $this->session->set_flashdata('simpel', 'Simulasi Pelayanan Berhasil<b>');
             //=============================
             redirect('pelayanan');
         } else {
@@ -257,18 +257,9 @@ class Pelayanan extends CI_Controller
         //total waktu layanan
         $totalwl = $TWaktuTguLyn / $loket;
 
-        //memasukan data dalam database
 
-        $result = [
-            'r_tunggu_antrian' => $wq,
-            'r_tunggu_layan' => $wl,
-            'r_nasabah_antrian' => $lq,
-            'r_nasabah_sistem' => $ls,
-            'probabilitas_teler' => $probabilitas,
-            'r_layan_total' => $totalwl,
 
-        ];
-        $this->m_simulasi->input_hasil($result);
+
         //=========================================
 
         $parameter = [
@@ -279,7 +270,42 @@ class Pelayanan extends CI_Controller
         ];
 
 
+
         $this->m_simulasi->input_parameter($parameter);
+        $param = $this->m_widget->get_parameter();
+        $waktu = $wq * 3600;
+        $exp = 1;
+
+        if ($probabilitas > 1) {
+            $exp = 2;
+        } else {
+
+            if ($waktu >= 300) {
+                $exp = 2;
+            } else if ($waktu <= 61) {
+                $exp = 3;
+            } else {
+                $exp = 1;
+            }
+        }
+
+
+
+
+        $result = [
+            'r_tunggu_antrian' => $wq,
+            'r_tunggu_layan' => $wl,
+            'r_nasabah_antrian' => $lq,
+            'r_nasabah_sistem' => $ls,
+            'probabilitas_teler' => $probabilitas,
+            'r_layan_total' => $totalwl,
+            'id_parameter' => $param[0]->id,
+            'id_saran' => $exp
+
+        ];
+
+
+        $this->m_simulasi->input_hasil($result);
     }
 
 
@@ -295,8 +321,14 @@ class Pelayanan extends CI_Controller
         //bangkitkan bilangan acak
         if ($query[0]->durasi == 1) {
             $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
-        } else {
-            $AcakInter = rand(0.2 * 1000, 0.5 * 1000) / 1000;
+        }
+        // } else if ($query[0]->durasi == 2) {
+        //     $AcakInter = rand(0.32 * 1000, 0.55 * 1000) / 1000;
+        // } else if ($query[0]->durasi == 3) {
+        //     $AcakInter = rand(0.47 * 1000, 0.68 * 1000) / 1000;
+        // }
+        else {
+            $AcakInter = rand(0.1 * 1000, 0.3 * 1000) / 1000;
         }
 
         //hitung waktu pelayanan
@@ -313,36 +345,6 @@ class Pelayanan extends CI_Controller
         return $nilai;
     }
 
-    private function _kesimpulan()
-    {
-
-        $hasil = $this->m_widget->get_hasil();
-        $param = $this->m_widget->get_parameter();
-        $waktu = $hasil[0]->r_tunggu_antrian * 3600;
-        $exp = 1;
-
-        if ($hasil[0]->probabilitas_teler > 1) {
-            $exp = 2;
-        } else {
-
-            if ($waktu >= 300) {
-                $exp = 2;
-            } else if ($waktu <= 61) {
-                $exp = 3;
-            } else {
-                $exp = 1;
-            }
-        }
-
-
-        $data = [
-            'id_hasil' => $hasil[0]->id_hasil,
-            'id_parameter' => $param[0]->id,
-            'id_saran' => $exp
-
-        ];
-        $this->m_simulasi->input_kesimpulan($data);
-    }
 
     public function pilihLoket($waktuSelesai, $waktuMulai, $totalLoket)
     {
@@ -382,11 +384,20 @@ class Pelayanan extends CI_Controller
     {
 
         $this->db->truncate('tb_pelayanan');
-        $this->db->truncate('tb_hasil');
+        // $this->db->truncate('tb_hasil');
         $this->db->truncate('tb_parameter');
-        $this->db->truncate('tb_kesimpulan');
-
         redirect('pelayanan');
+    }
+
+    public function delete()
+    {
+
+
+        // POST
+        $this->m_simulasi->delete($this->input->post('id_hasil'));
+
+        $this->session->set_flashdata('delete', 'Mengapus data <b>');
+        redirect('simulasi/hasil');
     }
 }
     // echo '<pre>';

@@ -8,7 +8,7 @@
         $heading = '#Update User';
     } else if ($this->session->flashdata('delete')) {
         $message = $this->session->flashdata('delete');
-        $heading = '#Delete User';
+        $heading = '#Delete Data Hasil';
     }
     ?>
     <?php if (isset($message)) { ?>
@@ -85,6 +85,7 @@
                         <th>Probailitas Server</th>
                         <th>Total Layanan (HH:MM:SS)</th>
                         <th>Kesimpulan</th>
+                        <!-- <th>Alat</th> -->
 
                     </tr>
                 </thead>
@@ -120,8 +121,34 @@
                                 <td><?= ubahwaktu($keys->r_tunggu_layan * 3600) ?></td>
                                 <td><?= $keys->probabilitas_teler * 100 ?> %</td>
                                 <td><?= ubahwaktu($keys->r_layan_total * 3600) ?></td>
-                                <td style="  color: <?= $keys->warna ?>; font-size: 17px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><?= $keys->konten ?></td>
+                                <!-- <td style="  color: <?= $keys->warna ?>; font-size: 17px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><?= $keys->konten ?></td>
+                                <td> <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modalDelete<?php echo $keys->id_hasil; ?>"> <i class="fas fa-trash text-white-30"></i></button></td> -->
                             </tr>
+
+                            <!-- Modal Delete-->
+                            <div class="modal fade" id="modalDelete<?php echo $keys->id_hasil; ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i aria-hidden="true" class="ki ki-close"></i>
+                                            </button>
+                                        </div>
+                                        <?php echo form_open("pelayanan/delete") ?>
+                                        <div class="modal-body">
+                                            Apakah anda yakin akan menghapus data ini ?
+
+                                            <input type="hidden" class="form-control" name="id_hasil" required="required" value="<?php echo $keys->id_hasil; ?>">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger font-weight-bold">Hapus</button>
+                                            <?php echo form_close(); ?>
+                                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Batal</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php $no++;
                         } ?>
                         <!-- End Looping -->

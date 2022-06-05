@@ -72,15 +72,15 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">Laju Kedatangan Antrian:</label>
-                                    <input type="numerik" name="lamda" class="form-control" placeholder="laju Kedatangan antrian/satuan waktu" value="<?= set_value('lamda') ?>">
+                                    <input type="numerik" name="lamda" class="form-control" placeholder="laju Kedatangan antrian/jam" value="<?= set_value('lamda') ?>">
                                     <?php echo form_error('lamda', '<small class="text-danger mt-1">', '</small>'); ?>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">Durasi:</label>
                                     <input type="numerik" name="durasi" class="form-control" placeholder="Waktu Simulasi/ jam" value="<?= set_value('durasi') ?>">
                                     <?php echo form_error('durasi', '<small class="text-danger mt-1">', '</small>'); ?>
-                                </div>
+                                </div> -->
 
 
 
