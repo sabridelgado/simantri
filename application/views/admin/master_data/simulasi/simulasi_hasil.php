@@ -121,8 +121,8 @@
                                 <td><?= ubahwaktu($keys->r_tunggu_layan * 3600) ?></td>
                                 <td><?= $keys->probabilitas_teler * 100 ?> %</td>
                                 <td><?= ubahwaktu($keys->r_layan_total * 3600) ?></td>
-                                <!-- <td style="  color: <?= $keys->warna ?>; font-size: 17px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><?= $keys->konten ?></td>
-                                <td> <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modalDelete<?php echo $keys->id_hasil; ?>"> <i class="fas fa-trash text-white-30"></i></button></td> -->
+                                <td style="  color: <?= $keys->warna ?>; font-size: 17px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><?= $keys->konten ?></td>
+                                <!-- <td> <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modalDelete<?php echo $keys->id_hasil; ?>"> <i class="fas fa-trash text-white-30"></i></button></td> -->
                             </tr>
 
                             <!-- Modal Delete-->
